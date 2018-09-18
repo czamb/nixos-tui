@@ -55,7 +55,7 @@ def item_chosen(button, choice):
         )
     elif choice_key == "nixos":
         output = urwid.Text(
-            "sudo nix-channel --add https://nixos.org/https://github.com/krebs/nixos-generatorschannels/nixos-18.09 nixos"
+            "sudo nix-channel --add https://nixos.org/channels/nixos-18.09 nixos"
         )
     elif choice_key == "create-iso":
         output = urwid.Text("https://github.com/krebs/nixos-generators")
@@ -96,14 +96,17 @@ def exit_program(button):
     raise urwid.ExitMainLoop()
 
 
-def exit_on_q(key):
+def unhandled_input(key):
     if key in ("q", "Q"):
         raise urwid.ExitMainLoop()
+    if key in ("b", "B"):
+        pass  # TODO: go back
+
 
 
 main = urwid.Padding(menu(choices=CHOICES), left=2, right=2)
 tui = urwid.MainLoop(
-    main, palette=[("reversed", "standout", "")], unhandled_input=exit_on_q
+    main, palette=[("reversed", "standout", "")], unhandled_input=unhandled_input
 )
 tui.run()
 
