@@ -1,0 +1,16 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+"25879e3" = {path = "./urwid"}
+black = "*"
+
+
+[dev-packages]
+
+pylint = "*"
