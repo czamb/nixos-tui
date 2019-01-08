@@ -4,7 +4,7 @@ import subprocess
 import urwid
 
 
-class InstallerTUI():
+class InstallerTUI:
     """NixOS installer terminal UI
     """
 
@@ -35,10 +35,10 @@ def menu(title="NixOS Installer v2018-09", subtitle=None, choices=None):
 
 
 def item_chosen(button, choice):
-    response = urwid.Text([f"You chose {choice}", u"\n"])
+    response = urwid.Text([f"You chose {choice}", "\n"])
 
     choice_key = list(CHOICES.keys())[list(CHOICES.values()).index(choice)]
-    done = urwid.Button(u"Ok")
+    done = urwid.Button("Ok")
     urwid.connect_signal(done, "click", exit_program)
     if choice_key == "format":
         output = urwid.BoxAdapter(device_selector(), 10)
@@ -101,7 +101,6 @@ def unhandled_input(key):
         raise urwid.ExitMainLoop()
     if key in ("b", "B"):
         pass  # TODO: go back
-
 
 
 main = urwid.Padding(menu(choices=CHOICES), left=2, right=2)
